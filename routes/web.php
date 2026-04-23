@@ -29,3 +29,6 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 //  Delete post
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+Route::get('/posts/trash', [PostController::class, 'trash'])->name('posts.trash');
+Route::get('/posts/restore/{id}', [PostController::class, 'restore'])->name('posts.restore');
+Route::get('/posts/delete/{id}', [PostController::class, 'forceDelete'])->name('posts.forceDelete');
