@@ -28,7 +28,7 @@
             </div>
         @endif
 
-        <form action="{{ route('posts.update', $post->id) }}" method="POST"
+        <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data"
             class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
             @csrf
             @method('PUT')
@@ -46,6 +46,22 @@
                     class="w-full border border-gray-300 px-4 py-2 rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ $post->description }}</textarea>
             </div>
 
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Tags (Comma separated)</label>
+                <input type="text" name="tags"
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value="{{ $post->tags ? implode(', ', $post->tags) : '' }}">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Featured Image</label>
+                @if($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" class="w-20 h-20 object-cover rounded mb-2">
+                @endif
+                <input type="file" name="image"
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
             <button type="submit"
                 class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded shadow-md transition duration-300 w-full">
                 Update Post
@@ -54,5 +70,4 @@
     </div>
 
 </body>
-
 </html>

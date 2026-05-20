@@ -28,7 +28,7 @@
             </div>
         @endif
 
-        <form action="{{ route('posts.store') }}" method="POST"
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data"
             class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
             @csrf
             <div class="mb-6">
@@ -44,6 +44,19 @@
                     class="w-full border border-gray-300 px-4 py-2 rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('description') }}</textarea>
             </div>
 
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Tags (Comma separated)</label>
+                <input type="text" name="tags" placeholder="php, laravel, pgsql"
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value="{{ old('tags') }}">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Featured Image</label>
+                <input type="file" name="image"
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
             <button type="submit"
                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow-md transition duration-300 w-full">
                 Create Post
@@ -52,5 +65,4 @@
     </div>
 
 </body>
-
 </html>
